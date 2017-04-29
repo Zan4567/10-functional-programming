@@ -1,3 +1,4 @@
+((module) => {
 'use strict';
 
 // TODO: Wrap the entire contents of this file in an IIFE.
@@ -141,3 +142,4 @@ articleView.initAdminPage = function() {
   $('#blog-stats .articles').text(Article.all.length);
   $('#blog-stats .words').text(Article.numWordsAll());
 };
+});
