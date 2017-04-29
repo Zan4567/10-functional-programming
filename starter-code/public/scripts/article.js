@@ -82,10 +82,12 @@ Article.numWordsAll = () => {
 Article.allAuthors = () => {
   return Article.all.map(function(ele) {
     return ele.author;
-  }).reduce(function(accumulator) {
-    accumulator += " " + this;
+  }).reduce(function(accumulator, ele) {
+    if(!accumulator.includes(ele)) {
+      accumulator.push(ele);
+    }
     return accumulator;
-  },[]);
+  }, []);
 };
 
 Article.numWordsByAuthor = () => {
@@ -99,16 +101,18 @@ Article.numWordsByAuthor = () => {
     // property.
     var authorStats = {author: author, words: 0};
     authorStats.words = Article.all.filter(function(ele) {
-      ele.author === this.author;
-    }, authorStats).map(function(ele) {
+      ele.author === authorStats.author;
+    }).map(function(ele) {
       //get word count in this article
+
       var wordCount = 0;
       wordCount += object.keys(ele).forEach(key => {return key.split().length});
-      console.log(wordCount + ' words counted in ' + this.title);
       return wordcount;
-    }).reduce(function(accumulator) {
-      accumulator += this;
-    });
+    }).reduce(function(accumulator, ele) {
+      accumulator += ele;
+    }, []);
+    
+
   });
 };
 
